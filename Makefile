@@ -6,7 +6,7 @@
 #    By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 10:34:51 by rfelicio          #+#    #+#              #
-#    Updated: 2022/08/23 10:46:09 by rfelicio         ###   ########.fr        #
+#    Updated: 2022/09/19 09:31:46 by rfelicio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,35 @@ HEADERS		= -I $(HEADER_DIR)
 SRC_DIR		= ./src
 SRC			= $(SRC_DIR)/main.c
 
-OBJ_DIR		= ./obj
-OBJ_DIR		= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
+OBJS_DIR		= ./obj
+OBJS			= $(patsubst $(SRC_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRC))
 
 all: $(NAME)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+$(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(FLAGS) $< -c -o $@ $(HEADERS)
 	@echo
+
+$(NAME): $(OBJS_DIR) $(OBJS)
+	@echo "Linking..."
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME) $(HEADERS)
+	@echo
+
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
+
+clean:
+	@echo "Cleaning object files..."
+	@echo
+	@rm -rf $(OBJS_DIR)
+	@echo "Finished cleaning object files"
+	@echo
+
+fclean: clean
+	@echo "Cleaning executable file: $(NAME)"
+	@rm -rf $(NAME)
+	@echo
+
+re: fclean all
 
 .PHONY: all clean fclean re bonus
