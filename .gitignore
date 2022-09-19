@@ -1,3 +1,7 @@
+# Executable binaries
+a.out
+pipex
+
 # Prerequisites
 *.d
 
