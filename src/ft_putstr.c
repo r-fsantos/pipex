@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 10:10:22 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/20 20:11:09 by rfelicio         ###   ########.fr       */
+/*   Created: 2022/09/20 19:50:51 by rfelicio          #+#    #+#             */
+/*   Updated: 2022/09/20 20:02:18 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_putendl_fd(char *s, int fd)
 {
-	if (argc != EXPECTED_ARGC)
-		ft_error(e_bad_input);
-	ft_putchar_fd(argc, e_fd_std_out);
-	ft_putendl_fd(*argv, e_fd_std_out);
-	ft_putendl_fd(*env, e_fd_std_out);
-	return (0);
+	if (s != NULL)
+	{
+		ft_putstr_fd(s, fd);
+		ft_putchar_fd(NEW_LINE, fd);
+	}
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	while (*s != '\0')
+		ft_putchar_fd(*s++, fd);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }
