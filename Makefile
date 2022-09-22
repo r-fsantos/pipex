@@ -6,7 +6,7 @@
 #    By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 10:34:51 by rfelicio          #+#    #+#              #
-#    Updated: 2022/09/20 19:54:04 by rfelicio         ###   ########.fr        #
+#    Updated: 2022/09/21 23:47:34 by rfelicio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,14 @@ HEADERS		= -I $(HEADER_DIR)
 
 SRC_DIR		= ./src
 SRC			=	$(SRC_DIR)/main.c		\
+				$(SRC_DIR)/ft_env.c		\
 				$(SRC_DIR)/ft_error.c	\
+				$(SRC_DIR)/ft_mem.c		\
+				$(SRC_DIR)/ft_parser.c	\
 				$(SRC_DIR)/ft_putstr.c	\
+				$(SRC_DIR)/ft_split.c	\
+				$(SRC_DIR)/ft_split2.c	\
+				$(SRC_DIR)/ft_str.c		\
 
 OBJS_DIR		= ./obj
 OBJS			= $(patsubst $(SRC_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRC))

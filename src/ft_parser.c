@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 10:10:22 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 00:44:20 by rfelicio         ###   ########.fr       */
+/*   Created: 2022/09/21 23:32:50 by rfelicio          #+#    #+#             */
+/*   Updated: 2022/09/21 23:57:52 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-int	main(int argc, char **argv, char **envp)
-{
-	t_env	env;
+static char	*has_occurrence(const char *s1, const char *s2, size_t len);
 
-	if (argc != EXPECTED_ARGC)
-		ft_error(e_bad_input, NULL);
-	if (!ft_env_prep(argc, argv, envp, &env))
-		ft_error(e_env_prep, &env);
-	ft_putendl_fd("REMOVE: SUCCESS!", 1);
-	return (0);
+char	**filter(char **env, char *match)
+{
+	int	i;
+	int	match_len;
+
+	i = 0;
+	match_len = ft_strlen(match);
+	while (env[i])
+	{
+		if (has_occurrence(env[i], match, match_len))
+			return (ft_split(env[i] + match_len, ':'));
+		i++;
+	}
+	return (NULL);
+}
+
+static char	*has_occurrence(const char *s1, const char *s2, size_t len)
+{
+	return (ft_strnstr(s1, s2, len));
 }
