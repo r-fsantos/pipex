@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 19:37:22 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 00:31:11 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/22 06:20:47 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static void	ft_mclean(char *buf, t_env *env);
 
-/**
- * TODO: Add struct pipex/env/etc
- **/
 void	ft_error(int error_code, t_env *env)
 {
 	char	*msg;

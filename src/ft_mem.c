@@ -3,23 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mem.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 22:12:37 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 00:45:21 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/22 06:26:19 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-// TODO: It is really needed to malloc t_env? i'm using the pointer on stack...
-// TODO: Talvez seja necessário usar o malloc diretamente, em seguida ft_bzero.
 void	ft_malloc(t_env *env)
 {
 	ft_bzero(env, sizeof(t_env));
 }
 
-// Implements double free for **paths
 void	ft_mdealloc(t_env *env)
 {
 	if (env->paths)
