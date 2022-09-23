@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 21:26:29 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:34:52 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ enum e_error_msg_codes
 {
 	e_no_error = 0,
 	e_bad_input = 1,
-	e_env_prep = 2,
+	e_env_init = 2,
 	e_file_not_accessible = -1
 };
 
