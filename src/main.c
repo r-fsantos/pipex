@@ -24,6 +24,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_error(e_env_init, &env);
 	if (!ft_pipe_init(&env))
 		ft_error(e_pipe_init, &env);
+	ft_mdealloc(&env);
 	ft_putendl_fd("REMOVE: SUCCESS!", 1);
 	return (0);
 }

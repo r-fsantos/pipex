@@ -24,8 +24,8 @@ void	ft_mdealloc(t_env *env)
 {
 	if (env->paths)
 		ft_doublefree((void **)env->paths);
-	ft_putendl_fd("NOT IMPLEMENTED ERROR: Memory deallocation!",
-		e_ft_std_err);
+	if (env->pfd)
+		ft_doublefree((void **)env->pfd);
 }
 
 void	ft_bzero(void *s, size_t n)
@@ -46,10 +46,15 @@ void	*ft_memset(void *b, int c, size_t len)
 
 void	ft_doublefree(void **arr)
 {
-	while (*arr++)
+	int	i;
+
+	i = 0;
+	while (arr[i])
 	{
-		free(*arr);
-		*arr = NULL;
+		free(arr[i]);
+		arr[i] = NULL;
+		i++;
 	}
+	free(arr);
 	arr = NULL;
 }

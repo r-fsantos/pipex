@@ -18,7 +18,7 @@ CC_FLAGS	= -Wall -Wextra -Werror
 LEAK_FLAGS	= -g3 -fsanitize=address
 
 ifeq ($(shell uname), Linux)
-	LEAK_FLAGS	=
+	LEAK_FLAGS	= -g3
 endif
 
 FLAGS		= $(CC_FLAGS) $(LEAK_FLAGS)

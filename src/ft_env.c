@@ -19,7 +19,7 @@ int	ft_env_init(int argc, char **argv, char **envp, t_env *env)
 	if (!is_accessible(env))
 		return (false);
 	env->fl_error = e_no_error;
-	env->argc = argc - 2;
+	env->argc = argc - 3;
 	env->argv = argv;
 	env->outfile = argv[argc - 1];
 	env->paths = filter(envp, PATH);
@@ -41,7 +41,7 @@ int	ft_pipe_init(t_env *env)
 	int	**pfd;
 	int	i;
 
-	pfd = (int **)ft_calloc(env->argc, sizeof(*pfd));
+	pfd = (int **)ft_calloc((env->argc + 1), sizeof(*pfd));
 	if (!pfd)
 	{
 		env->fl_error = e_pipe_init;
