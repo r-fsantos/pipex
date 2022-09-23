@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:14:24 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 06:26:06 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/22 21:27:56 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-int	ft_env_prep(int argc, char **argv, char **envp, t_env *env)
+int	ft_env_init(int argc, char **argv, char **envp, t_env *env)
 {
 	ft_malloc(env);
 	env->infile = argv[1];

@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 00:23:01 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:26:29 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	**filter(char **env, char *match);
 
 // Env
 int		is_accessible(t_env *env);
-int		ft_env_prep(int argc, char **argv, char **envp, t_env *env);
+int		ft_env_init(int argc, char **argv, char **envp, t_env *env);
 
 // Mem
 void	ft_malloc(t_env *env);
