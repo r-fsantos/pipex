@@ -6,12 +6,11 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:22 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 23:02:59 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:27:32 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
-#include <stdio.h>
 
 // TODO: Refactor ft_error. It is possible to set fl_error on t_env instance
 int	main(int argc, char **argv, char **envp)
