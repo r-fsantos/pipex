@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 21:34:52 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/22 22:32:27 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define USAGE_MSG "pipex usage: ./pipex infile \"cmd1\" \"cmd2\" outfile"
 # define FILE_NOT_ACCESSIBLE_MSG ": No such file or directory"
 # define PATH "PATH="
+# define PIPE_INIT_ERROR "On create pipes and/or mem allocation"
+# define READ_WRITE_PIPES 2
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -35,10 +37,11 @@ enum e_bool
 
 enum e_error_msg_codes
 {
+	e_file_not_accessible = -1,
 	e_no_error = 0,
 	e_bad_input = 1,
 	e_env_init = 2,
-	e_file_not_accessible = -1
+	e_pipe_init = 3
 };
 
 enum e_fd
@@ -50,12 +53,13 @@ enum e_fd
 
 typedef struct s_env
 {
-	int		error_flag;
+	int		fl_error;
 	char	*infile;
 	char	*outfile;
 	int		argc;
 	char	**argv;
 	char	**paths;
+	int		**pfd;
 }	t_env;
 
 // Errors
@@ -79,13 +83,14 @@ char	**filter(char **env, char *match);
 // Env
 int		is_accessible(t_env *env);
 int		ft_env_init(int argc, char **argv, char **envp, t_env *env);
+int		ft_pipe_init(t_env *env);
 
 // Mem
 void	ft_malloc(t_env *env);
 void	ft_mdealloc(t_env *env);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
-void	ft_doublefree(char **arr);
+void	ft_doublefree(void **arr);
 
 // Split e Split2 - Remover ao final. Portar libft
 char	**ft_split(char const *s, char c);

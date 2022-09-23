@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:14:24 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 21:27:56 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/22 23:00:32 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_env_init(int argc, char **argv, char **envp, t_env *env)
 	env->infile = argv[1];
 	if (!is_accessible(env))
 		return (false);
-	env->error_flag = e_no_error;
+	env->fl_error = e_no_error;
 	env->argc = argc - 2;
 	env->argv = argv;
 	env->outfile = argv[argc - 1];
@@ -30,8 +30,34 @@ int	is_accessible(t_env *env)
 {
 	if (access(env->infile, F_OK) == e_file_not_accessible)
 	{
-		env->error_flag = e_file_not_accessible;
+		env->fl_error = e_file_not_accessible;
 		return (false);
 	}
+	return (true);
+}
+
+int	ft_pipe_init(t_env *env)
+{
+	int	**pfd;
+	int	i;
+
+	pfd = (int **)ft_calloc(env->argc, sizeof(*pfd));
+	if (!pfd)
+	{
+		env->fl_error = e_pipe_init;
+		return (false);
+	}
+	i = -1;
+	while (++i < env->argc)
+	{
+		pfd[i] = (int *)ft_calloc(READ_WRITE_PIPES, sizeof(int));
+		if (!pfd[i])
+		{
+			env->fl_error = e_pipe_init;
+			ft_doublefree((void **)pfd);
+			return (false);
+		}
+	}
+	env->pfd = pfd;
 	return (true);
 }

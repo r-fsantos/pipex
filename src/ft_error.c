@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 19:37:22 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 21:34:52 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:46:56 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static void	ft_mclean(char *buf, t_env *env);
 
+/**
+ * TODO: ? Improve error handling for env_init? access or malloc?
+ **/
 void	ft_error(int error_code, t_env *env)
 {
 	char	*msg;
@@ -27,6 +30,8 @@ void	ft_error(int error_code, t_env *env)
 		msg = ft_strjoin(env->infile, FILE_NOT_ACCESSIBLE_MSG);
 		ft_putendl_fd(msg, e_ft_std_err);
 	}
+	if (error_code == e_pipe_init)
+		ft_putendl_fd(PIPE_INIT_ERROR, e_fd_std_out);
 	ft_mclean(msg, env);
 	exit(-1);
 }

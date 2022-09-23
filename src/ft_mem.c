@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mem.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 22:12:37 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 06:26:19 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/22 22:36:36 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ void	ft_malloc(t_env *env)
 	ft_bzero(env, sizeof(t_env));
 }
 
+/**
+ * TODO: Handle pipe dealloc
+ **/
 void	ft_mdealloc(t_env *env)
 {
 	if (env->paths)
-		ft_doublefree(env->paths);
+		ft_doublefree((void **)env->paths);
 	ft_putendl_fd("NOT IMPLEMENTED ERROR: Memory deallocation!",
 		e_ft_std_err);
 }
@@ -41,7 +44,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-void	ft_doublefree(char **arr)
+void	ft_doublefree(void **arr)
 {
 	while (*arr++)
 	{
