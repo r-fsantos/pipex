@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:22 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/23 19:27:32 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/24 11:42:47 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	main(int argc, char **argv, char **envp)
 		ft_error(e_env_init, &env);
 	if (!ft_pipe_init(&env))
 		ft_error(e_pipe_init, &env);
+	if (!ft_executing_infile_pipeline(0, &env))
+		ft_error(e_creating_pipe, &env);
+	if (!ft_executing_outfile_pipeline())
+		ft_putendl_fd("NOT IMPLEMENTED ERROR: ft_executing_outfile_pipeline",
+			1);
 	ft_mdealloc(&env);
 	ft_putendl_fd("REMOVE: SUCCESS!", 1);
 	return (0);
