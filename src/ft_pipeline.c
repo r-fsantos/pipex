@@ -6,13 +6,14 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 11:38:20 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/24 11:44:42 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/24 21:14:13 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
 static int	ft_creating_pipe(int pipe_nbr, t_env *env);
+static int	ft_creating_infile_pipeline(int infile_fd, int write_fd_of_pfd, t_env *env);
 
 /**
  * DESCRIPTION: wrapper/commander responsible for prepare the
@@ -54,6 +55,9 @@ int	ft_executing_infile_pipeline(int pipe_nbr, t_env *env)
 		fd = open(env->infile, O_RDONLY);
 		if (has_error_on(fd, e_open_infile, env))
 			return (false);
+		if (!ft_creating_infile_pipeline(fd, pfd[pipe_nbr][FOR_WRITE], env))
+			return (false);
+		// exec!
 	}
 	close(pfd[pipe_nbr][FOR_WRITE]);
 	return (true);
@@ -70,4 +74,20 @@ static int	ft_creating_pipe(int pipe_nbr, t_env *env)
 		return (true);
 	env->fl_error = e_creating_pipe;
 	return (false);
+}
+
+// TODO: adds definition for dup2. Its quite interesting and challenging to do!
+static int	ft_creating_infile_pipeline(int infile_fd, int write_fd_of_pfd, t_env *env)
+{
+	if (dup2(infile_fd, STDIN_FILENO) == -1)
+	{
+		env->fl_error = e_dup2_infile_to_stdin;
+		return (false);
+	}
+	if (dup2(write_fd_of_pfd, STDOUT_FILENO) == -1)
+	{
+		env->fl_error = e_dup2_write_fd_of_pfd_to_stdout;
+		return (false);
+	}
+	return (true);
 }

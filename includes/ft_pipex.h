@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/24 11:44:20 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/24 21:07:16 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ enum e_error_msg_codes
 	e_creating_pipe = 4,
 	e_forking_error = 5,
 	e_closing_pipe = 6,
-	e_open_infile = 7
+	e_open_infile = 7,
+	e_dup2_infile_to_stdin = 8,
+	e_dup2_write_fd_of_pfd_to_stdout = 9,
 };
 
 enum e_fd
