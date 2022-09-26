@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:14:24 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 23:00:32 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:40:42 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_env_init(int argc, char **argv, char **envp, t_env *env)
 {
 	ft_malloc(env);
 	env->infile = argv[1];
-	if (!is_accessible(env))
+	if (!is_accessible(env->infile, env))
 		return (false);
 	env->fl_error = e_no_error;
 	env->argc = argc - 3;
@@ -26,9 +26,9 @@ int	ft_env_init(int argc, char **argv, char **envp, t_env *env)
 	return (true);
 }
 
-int	is_accessible(t_env *env)
+int	is_accessible(char *path, t_env *env)
 {
-	if (access(env->infile, F_OK) == e_file_not_accessible)
+	if (access(path, F_OK) == e_file_not_accessible)
 	{
 		env->fl_error = e_file_not_accessible;
 		return (false);

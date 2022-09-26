@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 23:47:41 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/21 23:50:44 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/26 09:48:43 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,20 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			*(dststart + len) = *(srcstart + len);
 	}
 	return (dst);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	start;
+	size_t	s1len;
+
+	if (!s1 || !set)
+		return (NULL);
+	start = 0;
+	s1len = ft_strlen(s1);
+	while (s1[start] && (ft_strchr(set, s1[start])))
+		++start;
+	while (s1len && (ft_strchr(set, s1[s1len])))
+		--s1len;
+	return (ft_substr(s1, start, s1len - start + 1));
 }

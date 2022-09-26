@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 23:46:03 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/22 00:11:26 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/26 10:00:50 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,9 @@ char	**ft_split(char const *s, char c)
 		i++;
 	}
 	return (split);
+}
+
+char	**ft_split_arg_and_options(char *arg)
+{
+	return (ft_split(arg, ' '));
 }

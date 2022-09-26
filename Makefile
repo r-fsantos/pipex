@@ -6,7 +6,7 @@
 #    By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 10:34:51 by rfelicio          #+#    #+#              #
-#    Updated: 2022/09/24 11:39:11 by rfelicio         ###   ########.fr        #
+#    Updated: 2022/09/27 10:44:21 by rfelicio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,14 @@ HEADERS		= -I $(HEADER_DIR)
 
 SRC_DIR		=	./src
 SRC			=	$(SRC_DIR)/main.c			\
+				$(SRC_DIR)/ft_awk.c			\
+				$(SRC_DIR)/ft_arg_parsers.c	\
 				$(SRC_DIR)/ft_env.c			\
 				$(SRC_DIR)/ft_error.c		\
+				$(SRC_DIR)/ft_exec.c		\
 				$(SRC_DIR)/ft_mem.c			\
-				$(SRC_DIR)/ft_parser.c		\
+				$(SRC_DIR)/ft_mem2.c		\
+				$(SRC_DIR)/ft_parsers.c		\
 				$(SRC_DIR)/ft_pipeline.c	\
 				$(SRC_DIR)/ft_process.c		\
 				$(SRC_DIR)/ft_putstr.c		\
