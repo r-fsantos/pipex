@@ -6,14 +6,13 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 19:37:22 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/27 10:01:08 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 09:38:36 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
 static int	has_any_pipe_error(int error_code);
-static void	ft_mclean(char *buf, t_env *env);
 static void	ft_cmd_not_found(t_env *env);
 
 int	has_error_on(int operation_return, int error_code, t_env *env)
@@ -24,9 +23,6 @@ int	has_error_on(int operation_return, int error_code, t_env *env)
 	return (true);
 }
 
-/**
- * TODO: ? Improve error handling for env_init? access or malloc?
- **/
 void	ft_error(int error_code, t_env *env)
 {
 	char	*msg;
@@ -58,17 +54,6 @@ void	ft_error(int error_code, t_env *env)
 static int	has_any_pipe_error(int error_code)
 {
 	return (error_code == e_pipe_init || error_code == e_creating_pipe);
-}
-
-static void	ft_mclean(char *buf, t_env *env)
-{
-	if (buf)
-	{
-		free(buf);
-		buf = NULL;
-	}
-	if (env)
-		ft_mdealloc(env);
 }
 
 static void	ft_cmd_not_found(t_env *env)

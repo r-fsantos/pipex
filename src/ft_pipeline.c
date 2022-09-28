@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 11:38:20 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/27 10:28:29 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:49:10 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ int	ft_executing_infile_pipeline(int pipe_nbr, t_env *env)
 	wait(&wstatus);
 	if (WIFEXITED(wstatus))
 		env->fl_error = WEXITSTATUS(wstatus);
-	close(pfd[pipe_nbr][FOR_WRITE]);
+	ret = close(pfd[pipe_nbr][FOR_WRITE]);
+	if (has_error_on(ret, e_closing_pipe, env))
+		return (false);
 	return (true);
 }
 
@@ -77,6 +79,7 @@ int	ft_executing_outfile_pipeline(int pipe_nbr, t_env *env)
 	pid_t	**pfd;
 	int		pid;
 	int		fd;
+	int		ret;
 	int		wstatus;
 
 	if (!ft_creating_pipe(pipe_nbr, env))
@@ -98,7 +101,9 @@ int	ft_executing_outfile_pipeline(int pipe_nbr, t_env *env)
 	wait(&wstatus);
 	if (WIFEXITED(wstatus))
 		env->fl_error = WEXITSTATUS(wstatus);
-	close(pfd[pipe_nbr - 1][FOR_READ]);
+	ret = close(pfd[pipe_nbr - 1][FOR_READ]);
+	if (has_error_on(ret, e_closing_pipe, env))
+		return (false);
 	return (true);
 }
 
