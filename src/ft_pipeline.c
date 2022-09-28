@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 11:38:20 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/27 19:49:10 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 10:27:54 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_executing_infile_pipeline(int pipe_nbr, t_env *env)
 		if (has_error_on(ret, e_closing_pipe, env))
 			return (false);
 		fd = open(env->infile, O_RDONLY);
-		if (has_error_on(fd, e_open_infile, env))
+		if (has_error_on(fd, e_file_not_accessible, env))
 			return (false);
 		if (!ft_creating_infile_pipeline(fd, pfd[pipe_nbr][FOR_WRITE], env))
 			return (false);

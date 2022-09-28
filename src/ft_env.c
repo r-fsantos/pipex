@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:14:24 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/26 17:40:42 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 10:56:18 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_accessible(char *path, t_env *env)
 {
 	if (access(path, F_OK) == e_file_not_accessible)
 	{
-		env->fl_error = e_file_not_accessible;
+		env->fl_error = e_open_infile;
 		return (false);
 	}
 	return (true);

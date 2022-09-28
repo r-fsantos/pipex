@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 09:39:55 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:01:46 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@
 # define NEW_LINE '\n'
 # define BAD_INPUT "Bad input: \n"
 # define USAGE_MSG "pipex usage: ./pipex infile \"cmd1\" \"cmd2\" outfile"
-# define FILE_NOT_ACCESSIBLE_MSG ": No such file or directory"
+# define FILE_NOT_ACCESSIBLE_MSG "No such file or directory: "
 # define PATH "PATH="
 # define PIPE_INIT_ERROR "On create pipes and/or mem allocation"
 # define FORKING_ERROR "On forking new processes"
+# define CMD_NOT_FOUND "command not found: "
+# define PERMISSION_DENIED "permission denied: "
 
 # include <unistd.h>
 # include <stdlib.h>
