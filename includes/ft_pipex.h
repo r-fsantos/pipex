@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 22:57:47 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 23:16:31 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define MEMORY_ERROR "Error to allocate memory"
 
 # include <unistd.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>

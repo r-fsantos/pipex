@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 19:37:22 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 22:14:40 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 23:42:04 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	ft_error(int error_code, t_env *env)
 	if (error_code == e_bad_input || error_code == e_no_args_to_execute)
 		ft_putendl_fd(BAD_INPUT USAGE_MSG, e_fd_std_err);
 	if (error_code == e_open_infile || error_code == e_open_outfile)
-		ft_puterror_msg_to_std_err(FILE_NOT_ACCESSIBLE_MSG, env->infile,
+		ft_puterror_msg_to_std_err(NULL, env->infile,
 			&exit_code, e_open_infile);
 	if (error_code == e_file_not_accessible)
-		ft_puterror_msg_to_std_err(PERMISSION_DENIED, env->infile,
+		ft_puterror_msg_to_std_err(NULL, env->infile,
 			&exit_code, e_file_not_accessible);
 	if (has_any_pipe_error(error_code))
 		ft_putendl_fd(PIPE_INIT_ERROR, e_fd_std_err);
@@ -38,7 +38,7 @@ void	ft_error(int error_code, t_env *env)
 	if (has_any_dup_error(error_code))
 		ft_putendl_fd(DUP2_ERROR, e_fd_std_err);
 	if (error_code == e_execve_cmd_not_found_error)
-		ft_puterror_msg_to_std_err(CMD_NOT_FOUND, env->cmd.args[0],
+		ft_puterror_msg_to_std_err(NULL, env->cmd.args[0],
 			&exit_code, e_execve_cmd_not_found_error);
 	if (error_code == e_calloc_error)
 		ft_putendl_fd(MEMORY_ERROR, e_fd_std_err);
@@ -60,7 +60,8 @@ static void	ft_puterror_msg_to_std_err(char *left_join_msg,
 	char	*msg;
 
 	msg = ft_strjoin(left_join_msg, right_join_msg);
-	ft_putendl_fd(msg, e_fd_std_err);
+	perror(msg);
+	strerror(e_error_code);
 	*exit_code = e_error_code;
 	ft_singlefree((void *)msg);
 }

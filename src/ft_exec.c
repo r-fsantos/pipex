@@ -6,20 +6,12 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:22:53 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/27 10:39:32 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 23:22:51 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-// TODO: Remove
-// static void	ft_put_array(char **arr);
-
-/**
- * Debugger: // cmd = env->cmd.args; ft_put_array(cmd); t_putendl_fd("", 1);
- * ft_putendl_fd(env->cmd.path, 1); cmd = env->cmd.args;
- * ft_put_array(cmd); ft_putendl_fd("", 1);
- **/
 int	ft_exec(int pipe_index, t_env *env)
 {
 	char	**cmd;
@@ -59,12 +51,3 @@ int	ft_args_init(int arg_index, t_env *env)
 	env->bin = ft_strdup(env->cmd.args[0]);
 	return (true);
 }
-
-// static void	ft_put_array(char **arr)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (arr[i])
-// 		ft_putendl_fd(arr[i++], 1);
-// }
