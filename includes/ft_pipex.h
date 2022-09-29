@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 21:45:24 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:51:34 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ int		ft_pipe_init(t_env *env);
 
 // Mem
 void	ft_singlefree(void *arr);
-void	ft_mclean(char *buf, t_env *env);
 void	ft_malloc(t_env *env);
 void	ft_mdealloc(t_env *env);
 void	ft_bzero(void *s, size_t n);

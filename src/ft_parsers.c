@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 23:32:50 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/26 09:51:58 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:13:02 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	**filter(char **env, char *match)
 	return (NULL);
 }
 
-// Could be simplified, but is more readable in this approach (?)
 int	cmd_has_any_options(char *str)
 {
 	if (str)

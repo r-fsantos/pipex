@@ -6,15 +6,12 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 22:12:37 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 09:39:49 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:15:21 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-/**
- * TODO: Handle pipe dealloc
- **/
 void	ft_mdealloc(t_env *env)
 {
 	if (env->paths)
@@ -46,15 +43,4 @@ void	ft_doublefree(void **arr)
 	}
 	free(arr);
 	arr = NULL;
-}
-
-void	ft_mclean(char *buf, t_env *env)
-{
-	if (buf)
-	{
-		free(buf);
-		buf = NULL;
-	}
-	if (env)
-		ft_mdealloc(env);
 }
