@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:22:53 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 23:22:51 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/29 09:18:38 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int	ft_exec(int pipe_index, t_env *env)
 		return (false);
 	cmd = env->cmd.args;
 	if (is_awk())
+	{
+		ft_clean_unused_reference((void **)cmd);
+	}
 		ft_putendl_fd("Implement is_awk and parser..", 1);
 	else if (cmd_has_any_options(cmd[1]) && single_or_double_quotes(cmd[1]))
 		ft_parsing_options(env);

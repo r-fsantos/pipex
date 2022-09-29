@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 22:12:37 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 22:15:21 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/29 09:16:29 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,10 @@ void	ft_doublefree(void **arr)
 	}
 	free(arr);
 	arr = NULL;
+}
+
+void	ft_clean_unused_reference(void **arr)
+{
+	if (arr)
+		ft_doublefree(arr);
 }

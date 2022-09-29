@@ -138,6 +138,7 @@ void	ft_mdealloc(t_env *env);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_doublefree(void **arr);
+void	ft_clean_unused_reference(void **arr);
 
 // Split e Split2 - Remover ao final. Portar libft
 char	**ft_split(char const *s, char c);
