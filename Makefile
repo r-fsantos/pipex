@@ -6,7 +6,7 @@
 #    By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 10:34:51 by rfelicio          #+#    #+#              #
-#    Updated: 2022/09/27 10:44:21 by rfelicio         ###   ########.fr        #
+#    Updated: 2022/09/28 22:52:01 by rfelicio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,21 +27,22 @@ HEADER_DIR	= ./includes
 HEADERS		= -I $(HEADER_DIR)
 
 SRC_DIR		=	./src
-SRC			=	$(SRC_DIR)/main.c			\
-				$(SRC_DIR)/ft_awk.c			\
-				$(SRC_DIR)/ft_arg_parsers.c	\
-				$(SRC_DIR)/ft_env.c			\
-				$(SRC_DIR)/ft_error.c		\
-				$(SRC_DIR)/ft_exec.c		\
-				$(SRC_DIR)/ft_mem.c			\
-				$(SRC_DIR)/ft_mem2.c		\
-				$(SRC_DIR)/ft_parsers.c		\
-				$(SRC_DIR)/ft_pipeline.c	\
-				$(SRC_DIR)/ft_process.c		\
-				$(SRC_DIR)/ft_putstr.c		\
-				$(SRC_DIR)/ft_split.c		\
-				$(SRC_DIR)/ft_split2.c		\
-				$(SRC_DIR)/ft_str.c			\
+SRC			=	$(SRC_DIR)/main.c					\
+				$(SRC_DIR)/ft_awk.c					\
+				$(SRC_DIR)/ft_arg_parsers.c			\
+				$(SRC_DIR)/ft_env.c					\
+				$(SRC_DIR)/ft_error.c				\
+				$(SRC_DIR)/ft_exec.c				\
+				$(SRC_DIR)/ft_mem.c					\
+				$(SRC_DIR)/ft_mem2.c				\
+				$(SRC_DIR)/ft_parsers.c				\
+				$(SRC_DIR)/ft_pipeline.c			\
+				$(SRC_DIR)/ft_pipeline_helpers.c	\
+				$(SRC_DIR)/ft_process.c				\
+				$(SRC_DIR)/ft_putstr.c				\
+				$(SRC_DIR)/ft_split.c				\
+				$(SRC_DIR)/ft_split2.c				\
+				$(SRC_DIR)/ft_str.c					\
 
 OBJS_DIR		= ./obj
 OBJS			= $(patsubst $(SRC_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRC))

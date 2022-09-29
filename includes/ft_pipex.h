@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 22:51:34 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:57:47 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,19 @@
 # include <sys/wait.h>
 
 // Enums
+// give name to enum, to pass norminette
 enum e_bool
 {
 	false,
 	true
+};
+
+// give name to enum, to pass norminette
+enum e_fd
+{
+	e_fd_std_in,
+	e_fd_std_out,
+	e_fd_std_err
 };
 
 enum e_error_msg_codes
@@ -62,13 +71,6 @@ enum e_error_msg_codes
 	e_dup2_outfile_to_stdout = 13,
 	e_open_outfile = 14,
 	e_execve_cmd_not_found_error = 127,
-};
-
-enum e_fd
-{
-	e_fd_std_in,
-	e_fd_std_out,
-	e_fd_std_err
 };
 
 typedef struct s_cmd
@@ -148,6 +150,14 @@ int		is_child_process(int id);
 // Pipeline
 int		ft_executing_infile_pipeline(int pipe_nbr, t_env *env);
 int		ft_executing_outfile_pipeline(int pipe_nbr, t_env *env);
+
+// Pipeline helpers
+int		has_silent_errors_on_wait_or_close_pipe(int closing_fd, t_env *env);
+int		ft_creating_pipe(int pipe_nbr, t_env *env);
+int		ft_creating_infile_pipeline(int infile_fd, int write_fd_of_pfd,
+			t_env *env);
+int		ft_creating_outfile_pipeline(int read_fd_of_pfd, int outfile_fd,
+			t_env *env);
 
 // Exec
 int		ft_exec(int pipe_index, t_env *env);

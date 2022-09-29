@@ -6,17 +6,11 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 11:38:20 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 10:27:54 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:53:03 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
-
-static int	ft_creating_pipe(int pipe_nbr, t_env *env);
-static int	ft_creating_infile_pipeline(int infile_fd, int write_fd_of_pfd,
-				t_env *env);
-static int	ft_creating_outfile_pipeline(int read_fd_of_pfd, int outfile_fd,
-				t_env *env);
 
 /**
  * DESCRIPTION: wrapper/commander responsible for prepare the
@@ -43,8 +37,6 @@ int	ft_executing_infile_pipeline(int pipe_nbr, t_env *env)
 	pid_t	**pfd;
 	int		pid;
 	int		fd;
-	int		ret;
-	int		wstatus;
 
 	if (!ft_creating_pipe(pipe_nbr, env))
 		return (false);
@@ -54,8 +46,8 @@ int	ft_executing_infile_pipeline(int pipe_nbr, t_env *env)
 		return (false);
 	if (is_child_process(pid))
 	{
-		ret = close(pfd[pipe_nbr][FOR_READ]);
-		if (has_error_on(ret, e_closing_pipe, env))
+		fd = close(pfd[pipe_nbr][FOR_READ]);
+		if (has_error_on(fd, e_closing_pipe, env))
 			return (false);
 		fd = open(env->infile, O_RDONLY);
 		if (has_error_on(fd, e_file_not_accessible, env))
@@ -65,13 +57,8 @@ int	ft_executing_infile_pipeline(int pipe_nbr, t_env *env)
 		if (!ft_exec(pipe_nbr, env))
 			return (false);
 	}
-	wait(&wstatus);
-	if (WIFEXITED(wstatus))
-		env->fl_error = WEXITSTATUS(wstatus);
-	ret = close(pfd[pipe_nbr][FOR_WRITE]);
-	if (has_error_on(ret, e_closing_pipe, env))
-		return (false);
-	return (true);
+	return (has_silent_errors_on_wait_or_close_pipe(pfd[pipe_nbr][FOR_WRITE],
+		env));
 }
 
 int	ft_executing_outfile_pipeline(int pipe_nbr, t_env *env)
@@ -79,8 +66,6 @@ int	ft_executing_outfile_pipeline(int pipe_nbr, t_env *env)
 	pid_t	**pfd;
 	int		pid;
 	int		fd;
-	int		ret;
-	int		wstatus;
 
 	if (!ft_creating_pipe(pipe_nbr, env))
 		return (false);
@@ -98,58 +83,6 @@ int	ft_executing_outfile_pipeline(int pipe_nbr, t_env *env)
 		if (!ft_exec(pipe_nbr, env))
 			return (false);
 	}
-	wait(&wstatus);
-	if (WIFEXITED(wstatus))
-		env->fl_error = WEXITSTATUS(wstatus);
-	ret = close(pfd[pipe_nbr - 1][FOR_READ]);
-	if (has_error_on(ret, e_closing_pipe, env))
-		return (false);
-	return (true);
-}
-
-static int	ft_creating_pipe(int pipe_nbr, t_env *env)
-{
-	if (pipe(env->pfd[pipe_nbr]) == 0)
-		return (true);
-	env->fl_error = e_creating_pipe;
-	return (false);
-}
-
-/**
- * TODO: adds definition for dup2. Its quite interesting and challenging to do!
- * Debugger: 
- * 	ft_putstr_fd("ft_creating_infile_pipeline - write_fd_of_pfd: ", 1);
- * 	ft_putchar_fd(write_fd_of_pfd + 48, 1);
- * 	ft_putendl_fd("", 1);
- **/
-static int	ft_creating_infile_pipeline(int infile_fd, int write_fd_of_pfd,
-	t_env *env)
-{
-	if (dup2(infile_fd, STDIN_FILENO) == -1)
-	{
-		env->fl_error = e_dup2_infile_to_stdin;
-		return (false);
-	}
-	if (dup2(write_fd_of_pfd, STDOUT_FILENO) == -1)
-	{
-		env->fl_error = e_dup2_write_fd_of_pfd_to_stdout;
-		return (false);
-	}
-	return (true);
-}
-
-static int	ft_creating_outfile_pipeline(int read_fd_of_pfd, int outfile_fd,
-				t_env *env)
-{
-	if (dup2(read_fd_of_pfd, STDIN_FILENO) == -1)
-	{
-		env->fl_error = e_dup2_read_fd_of_pfd_to_stdout;
-		return (false);
-	}
-	if (dup2(outfile_fd, STDOUT_FILENO) == -1)
-	{
-		env->fl_error = e_dup2_outfile_to_stdout;
-		return (false);
-	}
-	return (true);
+	return (has_silent_errors_on_wait_or_close_pipe(pfd[pipe_nbr - 1][FOR_READ],
+		env));
 }
