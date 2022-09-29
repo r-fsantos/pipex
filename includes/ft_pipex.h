@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 23:16:31 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/29 09:21:15 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 // Akw parsing
-int		is_awk(void);
+int		is_awk(t_env *env);
 
 // Parser
 char	**filter(char **env, char *match);

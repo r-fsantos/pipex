@@ -19,11 +19,11 @@ int	ft_exec(int pipe_index, t_env *env)
 	if (!ft_args_init(pipe_index, env))
 		return (false);
 	cmd = env->cmd.args;
-	if (is_awk())
+	if (is_awk(env))
 	{
 		ft_clean_unused_reference((void **)cmd);
 	}
-		ft_putendl_fd("Implement is_awk and parser..", 1);
+	
 	else if (cmd_has_any_options(cmd[1]) && single_or_double_quotes(cmd[1]))
 		ft_parsing_options(env);
 	ft_set_executable_path(env);
