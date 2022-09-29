@@ -1,6 +1,8 @@
 # Executable binaries
 a.out
 pipex
+test_*
+test*
 
 # Prerequisites
 *.d
