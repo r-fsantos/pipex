@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 11:01:46 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:45:24 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define FORKING_ERROR "On forking new processes"
 # define CMD_NOT_FOUND "command not found: "
 # define PERMISSION_DENIED "permission denied: "
+# define DUP2_ERROR "Error to dup file descriptors"
+# define MEMORY_ERROR "Error to allocate memory"
 
 # include <unistd.h>
 # include <stdlib.h>
