@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/29 21:28:26 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:51:12 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define FOR_WRITE 1
 # define PIPEX_INFILE_OFFSET 2
 # define AWK_ARGS_QUANTITY 3
+# define BLUEPRINT_CHARACTER 1
 # define NEW_LINE '\n'
 # define BAD_INPUT "Bad input: \n"
 # define USAGE_MSG "pipex usage: ./pipex infile \"cmd1\" \"cmd2\" outfile"

@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 23:46:03 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/26 10:00:50 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:56:01 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,41 @@ char	**ft_split(char const *s, char c)
 	return (split);
 }
 
+/**
+ * DESCRIPTION: Pre-parse commands and options, in such a way to be
+ * possible to use in awk and other programms. Has a workaround to
+ * not suppress spaces and single or double quotes.
+ * It replaces spaces by an especial character, so in this way it
+ * is not removed from the array on the split function. Later on its
+ * removed and replaced by a space character.
+ *
+ * Example:
+ * INPUT:
+ * 		tr 'a' ' ' ->
+ * 		tr 'a' 'BLUEPRINT_CHARACTER' ->
+ * 		{"tr", "a", "BLUEPRINT_CHARACTER"} -> 
+ * OUTPUT:
+ * 		{"tr", "a", " "}
+ **/
 char	**ft_split_arg_and_options(char *arg)
 {
-	return (ft_split(arg, ' '));
+	char	**ret;
+	int		i;
+
+	i = -1;
+	while (arg[++i])
+	{
+		if ((arg[i] == '\'' || arg[i] == '\"')
+			&& arg[i + 1] && arg[i + 1] == ' '
+			&& arg[i + 2] && arg[i + 2] != ' ')
+			arg[i + 1] = BLUEPRINT_CHARACTER;
+	}
+	ret = ft_split(arg, ' ');
+	i = -1;
+	while (ret[++i])
+	{
+		if (ret[i][1] && ret[i][1] == BLUEPRINT_CHARACTER)
+			ret[i][1] = ' ';
+	}
+	return (ret);
 }
