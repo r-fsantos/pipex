@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/29 09:21:15 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:28:26 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define FOR_READ 0
 # define FOR_WRITE 1
 # define PIPEX_INFILE_OFFSET 2
+# define AWK_ARGS_QUANTITY 3
 # define NEW_LINE '\n'
 # define BAD_INPUT "Bad input: \n"
 # define USAGE_MSG "pipex usage: ./pipex infile \"cmd1\" \"cmd2\" outfile"
@@ -113,6 +114,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 // Akw parsing
 int		is_awk(t_env *env);
+void	ft_parsing_awk(t_env *env);
+char	*ft_cleaning_awk_args(t_env *env);
 
 // Parser
 char	**filter(char **env, char *match);
