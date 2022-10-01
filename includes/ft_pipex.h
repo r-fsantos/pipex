@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/10/01 01:15:26 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/10/01 08:24:11 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@
 # include <sys/wait.h>
 
 // Enums
-// give name to enum, to pass norminette
 enum e_bool
 {
 	false,
 	true
 };
 
-// give name to enum, to pass norminette
 enum e_fd
 {
 	e_fd_std_in,
