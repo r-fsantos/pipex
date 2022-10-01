@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 22:48:50 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/30 12:28:48 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/10/01 00:15:19 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ int	ft_creating_pipe(int pipe_nbr, t_env *env)
 
 /**
  * TODO: adds definition for dup2. Its quite interesting and challenging to do!
- * Debugger: 
- * 	ft_putstr_fd("ft_creating_infile_pipeline - write_fd_of_pfd: ", 1);
- * 	ft_putchar_fd(write_fd_of_pfd + 48, 1);
- * 	ft_putendl_fd("", 1);
+ * Debugger: write_fd_of_pfd += 0;
  **/
 int	ft_creating_infile_pipeline(int infile_fd, int write_fd_of_pfd, t_env *env)
 {

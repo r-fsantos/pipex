@@ -6,11 +6,12 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 23:46:03 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/30 14:56:01 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/10/01 01:15:45 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
+#include "stdio.h"
 
 /*
 ** Launched in case of error on srt assignment
@@ -124,23 +125,29 @@ char	**ft_split(char const *s, char c)
  **/
 char	**ft_split_arg_and_options(char *arg)
 {
-	char	**ret;
+	char	*cleaned_str;
 	int		i;
+	int		blueprint_index;
+	int		has_multiple_spaces;
 
 	i = -1;
+	blueprint_index = 0;
+	has_multiple_spaces = false;
 	while (arg[++i])
 	{
-		if ((arg[i] == '\'' || arg[i] == '\"')
-			&& arg[i + 1] && arg[i + 1] == ' '
-			&& arg[i + 2] && arg[i + 2] != ' ')
+		if ((arg[i] == '\'' || arg[i] == '\"') && arg[i + 1] == ' ')
+		{
 			arg[i + 1] = BLUEPRINT_CHARACTER;
+			blueprint_index = i + 1;
+			has_multiple_spaces = (arg[i + 2] && arg[i + 2] == ' ');
+		}
 	}
-	ret = ft_split(arg, ' ');
-	i = -1;
-	while (ret[++i])
+	if (has_multiple_spaces)
 	{
-		if (ret[i][1] && ret[i][1] == BLUEPRINT_CHARACTER)
-			ret[i][1] = ' ';
+		arg[blueprint_index + 1] = arg[i - 1];
+		cleaned_str = ft_calloc(blueprint_index + 1 + 1 + 1, sizeof(char));
+		ft_memmove(cleaned_str, arg, blueprint_index + 1 + 1);
+		arg = cleaned_str;
 	}
-	return (ret);
+	return (ft_split_and_remove_blueprint_from(arg));
 }

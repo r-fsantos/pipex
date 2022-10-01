@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 11:38:20 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/09/28 22:53:03 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/10/01 01:11:14 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
  * 		- (t_env) *env;
  * RETURN: e_bool (true) if no error occurs. Otherwhise, will set
  * the appropriate env->fl_error and then return e_bool (false).
- * 
- * Debugger: // pid = true; if (is_child_process(pid) || pid)
  **/
 int	ft_executing_infile_pipeline(int pipe_nbr, t_env *env)
 {
