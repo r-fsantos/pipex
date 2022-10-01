@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:10:46 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/10/01 08:24:11 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:25:24 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ char	*ft_pathjoin(char *s1, char *s2);
 char	*ft_get_filepath(t_env *env);
 void	ft_set_executable_path(t_env *env);
 char	**ft_split_and_remove_blueprint_from(char *str);
+void	ft_remove_second_terminator(char *str, char terminator);
 
 // Env
 int		is_accessible(char *path, t_env *env);

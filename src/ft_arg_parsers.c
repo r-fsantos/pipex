@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:51:36 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/10/01 01:15:10 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:31:06 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,19 @@ int	ft_parsing_options(t_env *env)
 char	**ft_split_and_remove_blueprint_from(char *str)
 {
 	char	**ret;
+	char	*haystack;
 	int		i;
+	int		j;
 
 	ret = ft_split(str, ' ');
 	i = -1;
 	while (ret[++i])
 	{
-		if (ret[i][1] && ret[i][1] == BLUEPRINT_CHARACTER)
-			ret[i][1] = ' ';
+		j = -1;
+		haystack = ret[i];
+		while (haystack[++j])
+			if (haystack[j] == BLUEPRINT_CHARACTER)
+				haystack[j] = ' ';
 	}
 	return (ret);
 }

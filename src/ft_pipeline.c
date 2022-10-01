@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 11:38:20 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/10/01 01:11:14 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:25:09 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,14 @@ int	ft_executing_outfile_pipeline(int pipe_nbr, t_env *env)
 	}
 	return (has_silent_errors_on_wait_or_close_pipe(pfd[pipe_nbr - 1][FOR_READ],
 		env));
+}
+
+void	ft_remove_second_terminator(char *str, char terminator)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == terminator)
+			str[i] = ' ';
 }

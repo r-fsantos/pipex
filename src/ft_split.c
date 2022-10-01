@@ -6,7 +6,7 @@
 /*   By: rfelicio <rfelicio@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 23:46:03 by rfelicio          #+#    #+#             */
-/*   Updated: 2022/10/01 01:15:45 by rfelicio         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:32:02 by rfelicio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,29 +125,28 @@ char	**ft_split(char const *s, char c)
  **/
 char	**ft_split_arg_and_options(char *arg)
 {
-	char	*cleaned_str;
 	int		i;
-	int		blueprint_index;
-	int		has_multiple_spaces;
+	int		second_terminator;
+	char	terminator;
 
 	i = -1;
-	blueprint_index = 0;
-	has_multiple_spaces = false;
+	second_terminator = false;
+	terminator = 0;
 	while (arg[++i])
 	{
 		if ((arg[i] == '\'' || arg[i] == '\"') && arg[i + 1] == ' ')
 		{
 			arg[i + 1] = BLUEPRINT_CHARACTER;
-			blueprint_index = i + 1;
-			has_multiple_spaces = (arg[i + 2] && arg[i + 2] == ' ');
+			if (arg[i + 2] && arg[i + 2] == ' ' && !second_terminator)
+			{
+				arg[i + 2] = arg[i];
+				second_terminator = i + 2;
+				terminator = arg[i];
+			}
 		}
 	}
-	if (has_multiple_spaces)
-	{
-		arg[blueprint_index + 1] = arg[i - 1];
-		cleaned_str = ft_calloc(blueprint_index + 1 + 1 + 1, sizeof(char));
-		ft_memmove(cleaned_str, arg, blueprint_index + 1 + 1);
-		arg = cleaned_str;
-	}
+	if (second_terminator)
+		ft_remove_second_terminator(&(arg[second_terminator + 1]),
+			terminator);
 	return (ft_split_and_remove_blueprint_from(arg));
 }
